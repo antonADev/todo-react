@@ -9,7 +9,7 @@ export const AppContent = styled.div`
   bottom: 0;
   margin: auto;
   width: 40%;
-  height: 70%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
