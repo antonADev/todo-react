@@ -1,13 +1,15 @@
-import React, { useContext } from 'react';
-import { TodoContext } from '../../contexts/todoContext';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   MainContainer,
   SmallBgnContainer,
   BigBgnContainer,
 } from './background.styles';
 
+import { selectIsDark } from '../../store/todo/todo.selector';
+
 const Background = () => {
-  const { isDark } = useContext(TodoContext);
+  const isDark = useSelector(selectIsDark);
   return (
     <MainContainer>
       <SmallBgnContainer isDark={isDark} />

@@ -3,9 +3,6 @@ import { TODO_ACTIONS } from '../actionTypes/todoActionTypes';
 export const todoReducer = (state, action) => {
   const { todoItems, isDark } = state;
   switch (action.type) {
-    // case ACTIONS.SET_TODO:
-    //   console.log({ ...state, userInput: action.payload });
-    //   return { ...state, userInput: action.payload };
     case TODO_ACTIONS.ADD_TODO:
       return {
         ...state,

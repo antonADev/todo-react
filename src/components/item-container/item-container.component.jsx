@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   ItemContainerStyle,
   InnerContainerStyle,
 } from './item-container.styles';
-import { TodoContext } from '../../contexts/todoContext';
+import { selectIsDark } from '../../store/todo/todo.selector';
 
 const ItemContainer = ({ children, noPad }) => {
-  const { isDark } = useContext(TodoContext);
+  const isDark = useSelector(selectIsDark);
   return (
     <ItemContainerStyle isDark={isDark}>
       <InnerContainerStyle noPad={noPad}>{children}</InnerContainerStyle>

@@ -1,29 +1,30 @@
-import React, { useState, useContext } from 'react';
-import { LightTodoItem, TodoItem, TodoSpan } from './todo.styles';
+import React from 'react';
+import { TodoItem, TodoSpan } from './todo.styles';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { TodoContext } from '../../contexts/todoContext';
-import { TODO_ACTIONS } from '../../contexts/actionTypes/todoActionTypes';
+import { selectIsDark, selectTodoItems } from '../../store/todo/todo.selector';
+import {
+  removeTodoFromList,
+  toggleTodoInList,
+} from '../../store/todo/todo.action';
+
 const Todo = ({ todo }) => {
-  const { isDark, todoDispatch } = useContext(TodoContext);
+  const todoItems = useSelector(selectTodoItems);
+  const isDark = useSelector(selectIsDark);
+  const dispatch = useDispatch();
   return (
     <TodoItem
       isDark={isDark}
       complete={todo.complete}
       onDoubleClick={() => {
-        todoDispatch({
-          type: TODO_ACTIONS.REMOVE_TODO,
-          payload: { id: todo.id },
-        });
+        dispatch(removeTodoFromList(todoItems, todo));
       }}>
       <TodoSpan>
         <input
           defaultChecked={todo.complete}
           type='checkbox'
           onClick={() => {
-            todoDispatch({
-              type: TODO_ACTIONS.TOGGLE_TODO,
-              payload: { id: todo.id },
-            });
+            dispatch(toggleTodoInList(todoItems, todo));
           }}
         />
       </TodoSpan>

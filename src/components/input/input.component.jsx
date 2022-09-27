@@ -1,15 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { FormContainer, InputContainer } from './input.styles';
-import { TodoContext } from '../../contexts/todoContext';
-import ItemContainer from '../item-container/item-container.component';
-import { TODO_ACTIONS } from '../../contexts/actionTypes/todoActionTypes';
-const newTodo = (todo) => {
-  return { id: Date.now(), todo: todo, complete: false };
-};
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { FormContainer, InputContainer } from './input.styles';
+
+import ItemContainer from '../item-container/item-container.component';
+import { selectTodoItems, selectIsDark } from '../../store/todo/todo.selector';
+import { addTodoToList } from '../../store/todo/todo.action';
 const Input = () => {
   //
-  const { todoDispatch, isDark } = useContext(TodoContext);
+  const isDark = useSelector(selectIsDark);
+  const todoItems = useSelector(selectTodoItems);
+  const dispatch = useDispatch();
   const [userInput, setUserInput] = useState('');
 
   const handleChange = (e) => setUserInput(e.target.value);
@@ -20,10 +21,7 @@ const Input = () => {
         <FormContainer
           onSubmit={(e) => {
             e.preventDefault();
-            todoDispatch({
-              type: TODO_ACTIONS.ADD_TODO,
-              payload: userInput,
-            });
+            dispatch(addTodoToList(todoItems, userInput));
             setUserInput('');
             // dispatch({
             //   type: ACTIONS.SET_TODO,
