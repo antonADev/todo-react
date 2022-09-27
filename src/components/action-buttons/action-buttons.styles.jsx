@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ButtonContainer = styled.div`
   position: sticky;
   bottom: 0;
-  height: 5rem;
+  min-height: 5rem;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -15,7 +15,7 @@ export const ButtonContainer = styled.div`
 
   border-top: 1px solid rgba(128, 128, 128, 0.3);
   transition: all 1s linear;
-  border-radius: 0 0 3px;
+  border-radius: 0 0 6px 6px;
 `;
 
 export const Button = styled.button`

@@ -5,7 +5,6 @@ import { TodoContext } from '../../contexts/todoContext';
 import { TODO_ACTIONS } from '../../contexts/actionTypes/todoActionTypes';
 const Todo = ({ todo }) => {
   const { isDark, todoDispatch } = useContext(TodoContext);
-
   return (
     <TodoItem
       isDark={isDark}

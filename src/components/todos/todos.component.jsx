@@ -9,7 +9,6 @@ const Todos = () => {
   const { todoItems, isDark } = useContext(TodoContext);
   const { filter } = useContext(TodoContext);
   const filteredTodos = todoItems.filter((todo) => {
-    console.log(todo.complete);
     if (filter === 'ALL') {
       return true;
     }
@@ -28,9 +27,8 @@ const Todos = () => {
         {filteredTodos.map((todo) => (
           <Todo key={todo.id} todo={todo} />
         ))}
-
-        <ActionButtons />
       </TodosContainer>
+      {todoItems.length !== 0 && <ActionButtons />}
     </>
   );
 };

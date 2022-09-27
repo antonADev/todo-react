@@ -7,8 +7,8 @@ export const TodosContainer = styled.div`
   overflow-y: scroll;
   width: 100%;
   background-color: ${(props) => (props.isDark ? '#192b39' : '#f5f5f5')};
-  border-radius: 6px;
-  margin-bottom: 2rem;
+  border-radius: 6px 6px 0 0;
+  /* margin-bottom: 2rem; */
   display: ${(props) => (props.todo.length > 0 ? 'block' : 'none')};
 
   box-shadow: 0px 20px 100px 3px
