@@ -7,7 +7,7 @@ const Header = () => {
   const { todoDispatch, isDark } = useContext(TodoContext);
   return (
     <HeaderContainer>
-      <Title>TODO</Title>
+      <Title>JAJ</Title>
       <ToggleDarkLighModeBtn
         onClick={() => {
           todoDispatch({ type: TODO_ACTIONS.SET_COLOR_MODE });
