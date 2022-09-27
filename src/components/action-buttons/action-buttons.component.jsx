@@ -1,34 +1,30 @@
 import React, { useContext } from 'react';
-import { ACTIONS } from '../../contexts/todoContext';
+import { FILTERED_ACTIONS } from '../../contexts/actionTypes/filteredActionTypes';
 import { TodoContext } from '../../contexts/todoContext';
 
 import { ButtonContainer, Button } from './action-buttons.styles';
 
 const ActionButtons = () => {
-  const { isDark, dispatch } = useContext(TodoContext);
+  const { isDark } = useContext(TodoContext);
+  const { visibilityDispatch } = useContext(TodoContext);
+
   return (
     <ButtonContainer isDark={isDark}>
       <Button
         onClick={() => {
-          dispatch({ type: ACTIONS.SHOW_ALL_TODO });
+          visibilityDispatch({ type: FILTERED_ACTIONS.SHOW_ALL });
         }}>
         All
       </Button>
       <Button
         onClick={() => {
-          dispatch({
-            type: ACTIONS.FILTER_TODO,
-            payload: { complete: false },
-          });
+          visibilityDispatch({ type: FILTERED_ACTIONS.SHOW_INCOMPLETE });
         }}>
         Active
       </Button>
       <Button
         onClick={() => {
-          dispatch({
-            type: ACTIONS.FILTER_TODO,
-            payload: { complete: true },
-          });
+          visibilityDispatch({ type: FILTERED_ACTIONS.SHOW_COMPLETE });
         }}>
         Completed
       </Button>

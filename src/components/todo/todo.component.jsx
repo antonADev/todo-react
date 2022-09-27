@@ -2,24 +2,27 @@ import React, { useState, useContext } from 'react';
 import { LightTodoItem, TodoItem, TodoSpan } from './todo.styles';
 
 import { TodoContext } from '../../contexts/todoContext';
-import { ACTIONS } from '../../contexts/todoContext';
+import { TODO_ACTIONS } from '../../contexts/actionTypes/todoActionTypes';
 const Todo = ({ todo }) => {
-  const { isDark, dispatch } = useContext(TodoContext);
+  const { isDark, todoDispatch } = useContext(TodoContext);
 
   return (
     <TodoItem
       isDark={isDark}
       complete={todo.complete}
       onDoubleClick={() => {
-        dispatch({ type: ACTIONS.REMOVE_TODO, payload: { id: todo.id } });
+        todoDispatch({
+          type: TODO_ACTIONS.REMOVE_TODO,
+          payload: { id: todo.id },
+        });
       }}>
       <TodoSpan>
         <input
           defaultChecked={todo.complete}
           type='checkbox'
           onClick={() => {
-            dispatch({
-              type: ACTIONS.TOGGLE_TODO,
+            todoDispatch({
+              type: TODO_ACTIONS.TOGGLE_TODO,
               payload: { id: todo.id },
             });
           }}

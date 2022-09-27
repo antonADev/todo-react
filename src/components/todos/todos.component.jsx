@@ -6,14 +6,28 @@ import { TodoContext } from '../../contexts/todoContext';
 import ActionButtons from '../action-buttons/action-buttons.component';
 
 const Todos = () => {
-  const { todoItems, filteredTodo, isDark } = useContext(TodoContext);
+  const { todoItems, isDark } = useContext(TodoContext);
+  const { filter } = useContext(TodoContext);
+  const filteredTodos = todoItems.filter((todo) => {
+    console.log(todo.complete);
+    if (filter === 'ALL') {
+      return true;
+    }
+    if (filter === 'COMPLETE' && todo.complete) {
+      return true;
+    }
+    if (filter === 'INCOMPLETE' && !todo.complete) {
+      return true;
+    }
+    return false;
+  });
 
   return (
     <>
-      <TodosContainer todo={todoItems} isDark={isDark}>
-        {filteredTodo.length === 0
-          ? todoItems?.map((todo) => <Todo key={todo.id} todo={todo} />)
-          : filteredTodo.map((todo) => <Todo key={todo.id} todo={todo} />)}
+      <TodosContainer todo={filteredTodos} isDark={isDark}>
+        {filteredTodos.map((todo) => (
+          <Todo key={todo.id} todo={todo} />
+        ))}
 
         <ActionButtons />
       </TodosContainer>
