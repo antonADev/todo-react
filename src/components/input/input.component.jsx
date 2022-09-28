@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { FormContainer, InputContainer } from './input.styles';
@@ -11,9 +11,7 @@ const Input = () => {
   const isDark = useSelector(selectIsDark);
   const todoItems = useSelector(selectTodoItems);
   const dispatch = useDispatch();
-  const [userInput, setUserInput] = useState('');
-
-  const handleChange = (e) => setUserInput(e.target.value);
+  const inputRef = useRef();
 
   return (
     <>
@@ -21,27 +19,15 @@ const Input = () => {
         <FormContainer
           onSubmit={(e) => {
             e.preventDefault();
-            dispatch(addTodoToList(todoItems, userInput));
-            setUserInput('');
-            // dispatch({
-            //   type: ACTIONS.SET_TODO,
-            //   payload: '',
-            // });
-            // dispatch({ type: ACTIONS.SET_TODO, payload: '' });
+            dispatch(addTodoToList(todoItems, inputRef.current.value));
+            inputRef.current.value = '';
           }}>
           <InputContainer
             required
             isDark={isDark}
             type='text'
-            value={userInput}
+            ref={inputRef}
             placeholder='Create a new todo...'
-            // onChange={(e) =>
-            //   dispatch({
-            //     type: ACTIONS.SET_TODO,
-            //     payload: e.target.value,
-            //   })
-            // }
-            onChange={handleChange}
           />
         </FormContainer>
       </ItemContainer>
