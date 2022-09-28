@@ -1,16 +1,16 @@
 import React, { useReducer, useContext } from 'react';
 import { HeaderContainer, Title, ToggleDarkLighModeBtn } from './header.styles';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
-import { TodoContext } from '../../contexts/todoContext';
-import { TODO_ACTIONS } from '../../contexts/actionTypes/todoActionTypes';
+import { GlobalContext } from '../../contexts/globalContext';
+import { setIsDark } from '../../contexts/actions/todoActions';
 const Header = () => {
-  const { todoDispatch, isDark } = useContext(TodoContext);
+  const { todoDispatch, isDark } = useContext(GlobalContext);
   return (
     <HeaderContainer>
       <Title>TODO</Title>
       <ToggleDarkLighModeBtn
         onClick={() => {
-          todoDispatch({ type: TODO_ACTIONS.SET_COLOR_MODE });
+          todoDispatch(setIsDark(!isDark));
         }}>
         {isDark ? <BsFillSunFill /> : <BsFillMoonFill />}
       </ToggleDarkLighModeBtn>

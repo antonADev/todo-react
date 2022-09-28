@@ -1,48 +1,20 @@
-import { TODO_ACTIONS } from '../actionTypes/todoActionTypes';
+import { TODO_ACTION_TYPES } from '../actionTypes/todoActionTypes';
 
 export const todoReducer = (state, action) => {
-  const { todoItems, isDark } = state;
-  switch (action.type) {
-    // case ACTIONS.SET_TODO:
-    //   console.log({ ...state, userInput: action.payload });
-    //   return { ...state, userInput: action.payload };
-    case TODO_ACTIONS.ADD_TODO:
+  const { type, payload } = action;
+  switch (type) {
+    case TODO_ACTION_TYPES.SET_TODO:
       return {
         ...state,
-        // todoItems: [...todoItems, newTodo(action.payload.userInput)],
-        todoItems: [
-          ...todoItems,
-          { id: Date.now(), todo: action.payload, complete: false },
-        ],
-      };
-    case TODO_ACTIONS.TOGGLE_TODO:
-      return {
-        ...state,
-        todoItems: [
-          ...todoItems.map((todo) => {
-            if (todo.id === action.payload.id) {
-              return { ...todo, complete: !todo.complete };
-            }
-            return todo;
-          }),
-        ],
-      };
-    case TODO_ACTIONS.REMOVE_TODO:
-      return {
-        ...state,
-        todoItems: [
-          ...todoItems.filter((todo) => {
-            return todo.id !== action.payload.id;
-          }),
-        ],
+        todoItems: payload,
       };
 
-    case TODO_ACTIONS.SET_COLOR_MODE:
+    case TODO_ACTION_TYPES.SET_COLOR_MODE:
       return {
         ...state,
-        isDark: !isDark,
+        isDark: payload,
       };
     default:
-      throw new Error(`Unhandled type of ${action.type} in todoReducer`);
+      throw new Error(`Unhandled type of ${type} in todoReducer`);
   }
 };

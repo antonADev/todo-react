@@ -1,17 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { FormContainer, InputContainer } from './input.styles';
-import { TodoContext } from '../../contexts/todoContext';
+import { GlobalContext } from '../../contexts/globalContext';
 import ItemContainer from '../item-container/item-container.component';
-import { TODO_ACTIONS } from '../../contexts/actionTypes/todoActionTypes';
-const newTodo = (todo) => {
-  return { id: Date.now(), todo: todo, complete: false };
-};
+import { addTodoToList } from '../../contexts/actions/todoActions';
 
 const Input = () => {
   //
-  const { todoDispatch, isDark } = useContext(TodoContext);
+  const { todoItems, todoDispatch, isDark } = useContext(GlobalContext);
   const [userInput, setUserInput] = useState('');
-
   const handleChange = (e) => setUserInput(e.target.value);
 
   return (
@@ -20,10 +16,7 @@ const Input = () => {
         <FormContainer
           onSubmit={(e) => {
             e.preventDefault();
-            todoDispatch({
-              type: TODO_ACTIONS.ADD_TODO,
-              payload: userInput,
-            });
+            todoDispatch(addTodoToList(todoItems, userInput));
             setUserInput('');
             // dispatch({
             //   type: ACTIONS.SET_TODO,

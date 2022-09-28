@@ -1,5 +1,3 @@
-export const FILTERED_ACTIONS = {
-  SHOW_ALL: 'ALL',
-  SHOW_COMPLETE: 'COMPLETE',
-  SHOW_INCOMPLETE: 'INCOMPLETE',
+export const FILTERED_ACTION_TYPES = {
+  SHOW_FILTERED: 'show-filtered',
 };

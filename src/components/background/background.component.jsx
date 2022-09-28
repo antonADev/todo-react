@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { TodoContext } from '../../contexts/todoContext';
+import { GlobalContext } from '../../contexts/globalContext';
 import {
   MainContainer,
   SmallBgnContainer,
@@ -7,7 +7,7 @@ import {
 } from './background.styles';
 
 const Background = () => {
-  const { isDark } = useContext(TodoContext);
+  const { isDark } = useContext(GlobalContext);
   return (
     <MainContainer>
       <SmallBgnContainer isDark={isDark} />

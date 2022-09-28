@@ -1,21 +1,14 @@
-import { FILTERED_ACTIONS } from '../actionTypes/filteredActionTypes';
+import { FILTERED_ACTION_TYPES } from '../actionTypes/filteredActionTypes';
 
 export const filterReducer = (state, action) => {
-  const { type } = action;
+  const { type, payload } = action;
 
   switch (type) {
-    case FILTERED_ACTIONS.SHOW_ALL:
+    case FILTERED_ACTION_TYPES.SHOW_FILTERED:
       return {
-        filter: 'ALL',
+        filter: payload,
       };
-    case FILTERED_ACTIONS.SHOW_COMPLETE:
-      return {
-        filter: 'COMPLETE',
-      };
-    case FILTERED_ACTIONS.SHOW_INCOMPLETE:
-      return {
-        filter: 'INCOMPLETE',
-      };
+
     default:
       throw new Error();
   }

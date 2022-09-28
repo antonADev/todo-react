@@ -3,10 +3,10 @@ import {
   ItemContainerStyle,
   InnerContainerStyle,
 } from './item-container.styles';
-import { TodoContext } from '../../contexts/todoContext';
+import { GlobalContext } from '../../contexts/globalContext';
 
 const ItemContainer = ({ children, noPad }) => {
-  const { isDark } = useContext(TodoContext);
+  const { isDark } = useContext(GlobalContext);
   return (
     <ItemContainerStyle isDark={isDark}>
       <InnerContainerStyle noPad={noPad}>{children}</InnerContainerStyle>
